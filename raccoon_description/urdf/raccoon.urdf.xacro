@@ -24,7 +24,7 @@
     <xacro:property name="wheel_offset_y" value="0.0775" />
     <xacro:property name="wheel_offset_z" value="0.000" />
 
-    <xacro:property name="chassis_mass" value="1.200" />
+    <xacro:property name="chassis_mass" value="12.000" />
     <xacro:property name="chassis_size_x" value="0.160" />
     <xacro:property name="chassis_size_y" value="0.160" />
     <xacro:property name="chassis_size_z" value="0.130" />
@@ -86,15 +86,15 @@
             <publishTf>1</publishTf>
             <publishWheelJointState>false</publishWheelJointState>
             <alwaysOn>true</alwaysOn>
-            <updateRate>100.0</updateRate>
+            <updateRate>50.0</updateRate>
             <!-- strange gazebo annotation -->
-            <leftJoint>right_joint</leftJoint>
-            <rightJoint>left_joint</rightJoint>
+            <leftJoint>left_joint</leftJoint>
+            <rightJoint>right_joint</rightJoint>
             <wheelSeparation>${2*wheel_offset_y}</wheelSeparation>
             <wheelDiameter>${2*wheel_radius}</wheelDiameter>
             <broadcastTF>1</broadcastTF>
-            <wheelTorque>1</wheelTorque>
-            <wheelAcceleration>1.8</wheelAcceleration>
+            <wheelTorque>10</wheelTorque>
+            <wheelAcceleration>0.8</wheelAcceleration>
             <commandTopic>/raccoon_velocity_controller/cmd_vel</commandTopic>
             <publishOdomTF>false</publishOdomTF>
             <odometryFrame>odom</odometryFrame> 

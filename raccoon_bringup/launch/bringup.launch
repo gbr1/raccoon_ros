@@ -19,16 +19,29 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 -->
 <launch>
+    <arg  name="gazebo" default="false" />
+    <group unless="$(arg gazebo)">
 
-    <include file="$(find raccoon_description)/launch/description.launch" />
-    <include file="$(find moebiustech_stm32_ros)/launch/moebiustech_stm32.launch" />
-    <include file="$(find raccoon_control)/launch/control.launch" />
+        <!-- robot description -->
+        <include file="$(find raccoon_description)/launch/description.launch" />
+
+        <!-- set up robot sensors -->
+        <include file="$(find moebiustech_stm32_ros)/launch/moebiustech_stm32.launch" />
+        <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+            <arg name="align_depth" value="true"/>
+            <arg name="enable_pointcloud" value="true"/>
+        </include>
+
+        <!-- run control -->
+        <include file="$(find raccoon_control)/launch/control.launch" />
+
+    </group>
+    
+    
+    
     <include file="$(find raccoon_control)/launch/twist_mux.launch" />
     <include file="$(find raccoon_control)/launch/localization.launch" />
-    <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
-        <arg name="align_depth" value="true"/>
-        <arg name="enable_pointcloud" value="true"/>
-    </include>
+    <include file="$(find raccoon_navigation)/launch/move_base.launch" />
     <include file="$(find raccoon_navigation)/launch/rtabmap.launch" />
     
 </launch>

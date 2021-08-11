@@ -21,4 +21,7 @@ THE SOFTWARE.
 
 <launch>
     <include file="$(find raccoon_bringup)/launch/bringup.launch" />
+    <include file="$(find raccoon_demo)/launch/teleop.launch" />
+    <node pkg="raccoon_demo" type="battery_node" name="battery_node" />
+    
 </launch>

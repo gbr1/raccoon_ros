@@ -61,7 +61,8 @@ THE SOFTWARE.
             <param name="subscribe_depth" type="bool" value="false"/>
             <param name="subscribe_rgbd" type="bool" value="true"/>
 
-            <remap from="odom" to="/odometry/filtered"/>
+            <!--<remap from="odom" to="/odometry/filtered"/>-->
+            <remap from="odom" to="/visual_odometry"/>
             <param name="odom_frame_id" value="odom"/>
             <param name="odom_tf_linear_variance" value="0.001"/>
             <param name="odom_tf_angular_variance" value="0.001"/>

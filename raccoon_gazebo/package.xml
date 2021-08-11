@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>raccoon_gazebo</name>
+  <version>1.0.0</version>
+  <description>The raccoon_gazebo package</description>
+
+  <maintainer email="giovannididio.bruno@gmail.com">G. Bruno</maintainer>
+
+  <license>MIT</license>
+
+  <!-- <url type="website">http://wiki.ros.org/raccoon_gazebo</url> -->
+
+  <author email="giovannididio.bruno@gmail.com">G. Bruno</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>raccoon_description</depend>
+  <exec_depend>gazebo</exec_depend>
+  <depend>gazebo_ros</depend>
+  <depend>gazebo_plugins</depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <depend>raccoon_bringup</depend>
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
