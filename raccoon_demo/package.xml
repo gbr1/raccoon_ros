@@ -20,6 +20,9 @@
   <build_export_depend>roscpp</build_export_depend>
   <exec_depend>joy</exec_depend>
   <exec_depend>roscpp</exec_depend>
+  <build_depend>moebiustech_stm32_ros</build_depend>
+  <build_export_depend>moebiustech_stm32_ros</build_export_depend>
+  <exec_depend>moebiustech_stm32_ros</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
