@@ -103,9 +103,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
+#  INCLUDE_DIRS include
 #  LIBRARIES raccoon_demo
-  CATKIN_DEPENDS joy roscpp
+#  CATKIN_DEPENDS joy roscpp
   #DEPENDS system_lib
 )
 
