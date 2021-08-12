@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>raccoon_demo</name>
-  <version>0.0.0</version>
+  <version>1.0.0</version>
   <description>The raccoon_demo package</description>
 
   <maintainer email="giovannididio.bruno@gmail.com">G. Bruno</maintainer>
@@ -23,6 +23,8 @@
   <build_depend>moebiustech_stm32_ros</build_depend>
   <build_export_depend>moebiustech_stm32_ros</build_export_depend>
   <exec_depend>moebiustech_stm32_ros</exec_depend>
+  <exec_depend>ros_openvino</exec_depend>
+  <exec_depend>rosboard</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
