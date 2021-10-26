@@ -46,7 +46,7 @@ raccoon_velocity_controller:
   wheel_radius_multiplier:     1.0
 
   #wheel_separation:            0.057
-  wheel_radius:                 0.069
+  wheel_radius:                 0.065
 
 
 
@@ -55,9 +55,9 @@ raccoon_velocity_controller:
   linear:
     x:
       has_velocity_limits:          true 
-      max_velocity:                 1.00     # m/s
+      max_velocity:                 0.90     # m/s
       has_acceleration_limits:      true
-      max_acceleration:             0.8     # m/s^2
+      max_acceleration:             0.7     # m/s^2
   angular:
     z:
       has_velocity_limits:          true 
