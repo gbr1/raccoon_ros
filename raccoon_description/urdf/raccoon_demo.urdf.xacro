@@ -21,26 +21,28 @@ THE SOFTWARE.
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="raccoon_robot">
     
     <xacro:include filename="$(find raccoon_description)/urdf/d435.urdf.xacro" />
-    <xacro:include filename="$(find raccoon_description)/urdf/wheel65.urdf.xacro" />
+    <xacro:include filename="$(find raccoon_description)/urdf/wheel.urdf.xacro" />
 
-    <xacro:property name="path_meshes" value="package://raccoon_description/meshes" />
+     <xacro:property name="path_meshes" value="package://raccoon_description/meshes" />
 
     <xacro:property name="M_PI" value="3.1415926535897931" />
-    <xacro:property name="M_PI_2" value="1.570796327" />    
+    <xacro:property name="M_PI_2" value="1.570796327" />
+
+    <xacro:property name="wheel_radius" value="0.0345" />
+    <xacro:property name="wheel_mount" value="0.0185" />
 
     <xacro:property name="d435_offset_x" value="0.066" />
     <xacro:property name="d435_offset_y" value="0" />
     <xacro:property name="d435_offset_z" value="0.0545" />
 
     <xacro:property name="wheel_tread" value="0.01" />
-    <xacro:property name="wheel_radius" value="0.0325" />
-    <xacro:property name="wheel_mount" value="0.0183" />
+    <xacro:property name="wheel_radius" value="0.0345" />
     <xacro:property name="wheel_mass" value="0.200" />
     <xacro:property name="wheel_offset_x" value="0.0" />
-    <xacro:property name="wheel_offset_y" value="0.075" />
+    <xacro:property name="wheel_offset_y" value="0.0775" />
     <xacro:property name="wheel_offset_z" value="0.000" />
 
-    <xacro:property name="chassis_mass" value="1.000" />
+    <xacro:property name="chassis_mass" value="12.000" />
     <xacro:property name="chassis_size_x" value="0.160" />
     <xacro:property name="chassis_size_y" value="0.160" />
     <xacro:property name="chassis_size_z" value="0.130" />
@@ -50,7 +52,7 @@ THE SOFTWARE.
 
         <link name="base_footprint">
             <collision>
-                <origin xyz="-0.065 0 0.006" rpy="0 0 0" />
+                <origin xyz="-0.065 0 0.005" rpy="0 0 0" />
                 <geometry>
                     <sphere radius="0.005" />
                 </geometry>
@@ -64,24 +66,12 @@ THE SOFTWARE.
                     <mesh filename="${path_meshes}/raccoon_body.dae"/>
                 </geometry>
             </visual>
-            
             <collision>
-                <origin xyz="0 0 0.065" rpy="0 0 0" />
+                <origin xyz="0 0 0.06" rpy="0 0 0" />
                 <geometry>
-                    <box size="0.160 0.160 0.10" />
+                    <box size="0.160 0.160 0.16" />
                 </geometry>
             </collision>
-            
-            <!--
-            <collision>
-                <origin xyz="-0.065 0 -0.02" rpy="0 0 0" />
-                <geometry>
-                    <sphere radius="0.01" />
-                </geometry>
-            </collision>
-            -->
-
-
             <inertia ixx="${chassis_mass*(chassis_size_y*chassis_size_y+chassis_size_z*chassis_size_z)}" ixy="0" ixz="0"
                          iyy="${chassis_mass*(chassis_size_x*chassis_size_x+chassis_size_z*chassis_size_z)}" iyz="0"
                          izz="${chassis_mass*(chassis_size_x*chassis_size_x+chassis_size_y*chassis_size_y)}" />
