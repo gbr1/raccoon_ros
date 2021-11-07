@@ -41,8 +41,8 @@ TebLocalPlannerROS:
  max_vel_x_backwards: 0.05
  max_vel_theta: 1.0
  acc_lim_x: 0.02
- acc_lim_theta: 0.1
- min_turning_radius: 0.1
+ acc_lim_theta: 0.05
+ min_turning_radius: 0.0
  footprint_model: # types: "point", "circular", "two_circles", "line", "polygon"
    type: "circular"
    radius: 0.085 # for type "circular"
@@ -58,7 +58,7 @@ TebLocalPlannerROS:
     
  min_obstacle_dist: 0.3
  include_costmap_obstacles: False
- costmap_obstacles_behind_robot_dist: 0.05
+ costmap_obstacles_behind_robot_dist: 0.1
  inflation_dist: 0.1
  obstacle_poses_affected: 30
  costmap_converter_plugin: ""

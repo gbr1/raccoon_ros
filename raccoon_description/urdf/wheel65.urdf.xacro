@@ -29,9 +29,9 @@ THE SOFTWARE.
                          izz="${0.5*wheel_mass*wheel_radius*wheel_radius}" />
             </inertial>
             <visual>
-                <origin xyz="0 ${-flip*0.010+0.005} 0" rpy="${M_PI_2} 0 ${-flip*M_PI}" />
+                <origin xyz="0 ${-flip*0.010+0.005} 0" rpy="0 0 ${-flip*M_PI}" />
                 <geometry>
-                    <mesh filename="${path_meshes}/wheel65.dae" scale="0.01 0.01 0.01" />
+                    <mesh filename="${path_meshes}/wheel65.dae" scale="1 1 1" />
                 </geometry>
             </visual>
             <collision>
