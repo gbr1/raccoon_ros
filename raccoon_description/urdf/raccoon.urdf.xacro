@@ -71,7 +71,7 @@ THE SOFTWARE.
             <visual>
                 <origin rpy="0.0 0.0 ${-M_PI_2}" xyz="0.0 0.0 ${wheel_mount}"/>
                 <geometry>
-                    <mesh filename="${path_meshes}/raccoon_body.dae"/>
+                    <mesh filename="${path_meshes}/raccoon_rev2.dae"/>
                 </geometry>
             </visual>
             
