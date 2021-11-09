@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<!--
+The MIT License
+Copyright (c) 2021 Giovanni di Dio Bruno https://gbr1.github.io
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="raccoon_robot">
+    
+    <xacro:include filename="$(find raccoon_description)/urdf/d435.urdf.xacro" />
+    <xacro:include filename="$(find raccoon_description)/urdf/wheel.urdf.xacro" />
+
+     <xacro:property name="path_meshes" value="package://raccoon_description/meshes" />
+
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+    <xacro:property name="M_PI_2" value="1.570796327" />
+
+    <xacro:property name="wheel_radius" value="0.0345" />
+    <xacro:property name="wheel_mount" value="0.0185" />
+
+    <xacro:property name="d435_offset_x" value="0.066" />
+    <xacro:property name="d435_offset_y" value="0" />
+    <xacro:property name="d435_offset_z" value="0.0545" />
+
+    <xacro:property name="wheel_tread" value="0.01" />
+    <xacro:property name="wheel_radius" value="0.0345" />
+    <xacro:property name="wheel_mass" value="0.200" />
+    <xacro:property name="wheel_offset_x" value="0.0" />
+    <xacro:property name="wheel_offset_y" value="0.0775" />
+    <xacro:property name="wheel_offset_z" value="0.000" />
+
+    <xacro:property name="chassis_mass" value="12.000" />
+    <xacro:property name="chassis_size_x" value="0.160" />
+    <xacro:property name="chassis_size_y" value="0.160" />
+    <xacro:property name="chassis_size_z" value="0.130" />
+
+
+    <xacro:macro name="raccoon_robot">
+
+        <link name="base_footprint">
+            <collision>
+                <origin xyz="-0.065 0 0.005" rpy="0 0 0" />
+                <geometry>
+                    <sphere radius="0.005" />
+                </geometry>
+            </collision>
+        </link>
+
+        <link name="base_link">
+            <visual>
+                <origin rpy="0.0 0.0 ${-M_PI_2}" xyz="0.0 0.0 ${wheel_mount}"/>
+                <geometry>
+                    <mesh filename="${path_meshes}/raccoon_body.dae"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0.06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.160 0.160 0.16" />
+                </geometry>
+            </collision>
+            <inertia ixx="${chassis_mass*(chassis_size_y*chassis_size_y+chassis_size_z*chassis_size_z)}" ixy="0" ixz="0"
+                         iyy="${chassis_mass*(chassis_size_x*chassis_size_x+chassis_size_z*chassis_size_z)}" iyz="0"
+                         izz="${chassis_mass*(chassis_size_x*chassis_size_x+chassis_size_y*chassis_size_y)}" />
+        </link>
+
+        <joint name="base_footprint_joint" type="fixed">
+            <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
+            <parent link="base_footprint"/>
+            <child link="base_link" />
+        </joint>
+
+        <xacro:d435 offset_x="${d435_offset_x}" offset_y="${d435_offset_y}" offset_z="${d435_offset_z}">
+        </xacro:d435>
+
+        <xacro:wheel lr="left" parent="base_link" offset_x="${wheel_offset_x}" offset_y="${wheel_offset_y}" offset_z="${wheel_offset_z}" flip="1">
+        </xacro:wheel>
+
+        <xacro:wheel lr="right" parent="base_link" offset_x="${wheel_offset_x}" offset_y="${-wheel_offset_y}" offset_z="${wheel_offset_z}" flip="0">
+        </xacro:wheel>
+
+   </xacro:macro>
+    
+    <!-- Differential drive controller -->
+    <gazebo>
+        <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <legacyMode>true</legacyMode>
+            <rosDebugLevel>Debug</rosDebugLevel>
+            <publishWheelTF>false</publishWheelTF>
+            <robotNamespace>/</robotNamespace>
+            <publishTf>1</publishTf>
+            <publishWheelJointState>false</publishWheelJointState>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>50.0</updateRate>
+            <!-- strange gazebo annotation -->
+            <leftJoint>left_joint</leftJoint>
+            <rightJoint>right_joint</rightJoint>
+            <wheelSeparation>${2*wheel_offset_y}</wheelSeparation>
+            <wheelDiameter>${2*wheel_radius}</wheelDiameter>
+            <broadcastTF>1</broadcastTF>
+            <wheelTorque>10</wheelTorque>
+            <wheelAcceleration>0.8</wheelAcceleration>
+            <commandTopic>/raccoon_velocity_controller/cmd_vel</commandTopic>
+            <publishOdomTF>false</publishOdomTF>
+            <odometryFrame>odom</odometryFrame> 
+            <odometryTopic>/raccoon_velocity_controller/odom</odometryTopic> 
+            <odometrySource>world</odometrySource> 
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+        </plugin>
+    </gazebo>
+
+</robot>
