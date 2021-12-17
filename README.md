@@ -34,7 +34,7 @@ To enable battery control: <br>
 
 To run teleop control: <br>
 `roslaunch raccoon_demo teleop.launch` <br>
-*Note: this node was designed to be used on the demo model with an X mode joypad, so if you use it is possible to obtain have issues with the navigation stack *
+*Note: this node was designed to be used on the demo model with an X mode joypad, so if you use it is possible to obtain have issues with the navigation stack.*
 
 
 ## Dependencies
