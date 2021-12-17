@@ -33,7 +33,7 @@ To enable battery control: <br>
 *Note: when battery is low (10.8V) the robot will automatically shutdown. To use this node you must be on an UP2 and have onboard leds working.*
 
 To run teleop control: <br>
-`rosrun raccoon_demo teleop_node` <br>
+`roslaunch raccoon_demo teleop.launch` <br>
 *Note: this node was designed to be used on the demo model with an X mode joypad, so if you use it is possible to obtain have issues with the navigation stack *
 
 
