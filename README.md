@@ -30,7 +30,7 @@ To run autonomous navigation: <br>
 
 To enable battery control: <br>
 `rosrun raccoon_demo battery_node` <br>
-*Note: when battery is low (10.8V) the robot will automatically shutdown. To use this node you must be on an UP2 and have onboard leds working.*
+*Note: when battery is low (10.0V) the robot will automatically shutdown. To use this node you must be on an UP2 and have onboard leds working.*
 
 To run teleop control: <br>
 `roslaunch raccoon_demo teleop.launch` <br>
